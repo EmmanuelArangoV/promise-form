@@ -1,10 +1,9 @@
 import { defineConfig } from "vite";
-import path from "path";
 
 export default defineConfig({
   root: "src",
-  publicDir: "assets",
   envDir: "../",
+  publicDir: "assets",
   server: {
     host: "::",
     port: 8080,
@@ -12,11 +11,5 @@ export default defineConfig({
   build: {
     outDir: "../dist",
     emptyOutDir: true,
-    rollupOptions: {
-      input: {
-        // root is set to 'src' so point to src/index.html explicitly
-        main: path.resolve(__dirname, "index.html"),
-      },
-    },
   },
 });
