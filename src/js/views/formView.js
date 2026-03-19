@@ -81,12 +81,12 @@ export function buildForm() {
       label: 'Ruta avanzada',
       placeholder: 'Selecciona tu ruta',
       options: [
-        { value: 'java-spring', text: 'Java con Spring Boot' },
-        { value: 'ts-next', text: 'TS con Next.js' },
-        { value: 'ia-auto', text: 'IA Automatizador' },
-        { value: 'data-analytics', text: 'Analítica de Datos' },
-        { value: 'node-nest', text: 'Node con Nest.js' },
-        { value: 'csharp-dotnet', text: 'C# con .NET' },
+        { value: 'Java con Spring Boot', text: 'Java con Spring Boot' },
+        { value: 'Typescript con Next.js', text: 'Typescript con Next.js' },
+        { value: 'IA y Automatización', text: 'IA y Automatización' },
+        { value: 'Analítica de Datos', text: 'Analítica de Datos' },
+        { value: 'Node con Nest.js', text: 'Node con Nest.js' },
+        { value: 'C# con .NET', text: 'C# con .NET' },
       ],
       required: true,
     })
