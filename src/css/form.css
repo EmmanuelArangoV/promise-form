@@ -1,0 +1,219 @@
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.form-group__label {
+  display: block;
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+  margin-bottom: 0.5rem;
+  transition: color 0.3s;
+}
+
+.form-group__input,
+.form-group__select {
+  width: 100%;
+  border: none;
+  border-bottom: 2px solid var(--border);
+  border-radius: 0;
+  background: transparent;
+  padding: 12px 0;
+  font-family: var(--font-family);
+  font-size: 15px;
+  font-weight: 400;
+  color: var(--text-primary);
+  outline: none;
+  transition: border-color 0.2s, color 0.3s;
+}
+
+.form-group__input::placeholder {
+  color: var(--text-muted);
+  opacity: 0.5;
+}
+
+.form-group__input:focus,
+.form-group__select:focus {
+  border-bottom-color: var(--accent);
+}
+
+.form-group__input--error,
+.form-group__select--error {
+  border-bottom-color: var(--color-error);
+}
+
+.form-group__error {
+  font-size: 0.75rem;
+  color: var(--color-error);
+  margin-top: 0.35rem;
+  min-height: 1.1em;
+}
+
+/* Select custom arrow */
+.form-group__select-wrapper {
+  position: relative;
+}
+
+.form-group__select-wrapper::after {
+  content: '▾';
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-muted);
+  pointer-events: none;
+  font-size: 14px;
+}
+
+.form-group__select {
+  appearance: none;
+  -webkit-appearance: none;
+  cursor: pointer;
+  padding-right: 1.5rem;
+}
+
+.form-group__select option {
+  background: var(--bg-card);
+  color: var(--text-primary);
+}
+
+/* Role selector boxes */
+.role-selector {
+  display: flex;
+  gap: 1rem;
+}
+
+.role-selector__option {
+  flex: 1;
+  position: relative;
+}
+
+.role-selector__option input[type="radio"] {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.role-selector__box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1.25rem 1rem;
+  border: 1.5px solid var(--border);
+  border-radius: 0;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  user-select: none;
+}
+
+.role-selector__option input[type="radio"]:checked + .role-selector__box {
+  border-color: var(--accent);
+  background-color: var(--accent);
+  color: #1A0000;
+}
+
+.role-selector__box:hover {
+  border-color: var(--accent);
+  color: var(--text-primary);
+}
+
+/* Submit button */
+.btn-submit {
+  width: 100%;
+  padding: 16px;
+  background: var(--primary);
+  color: var(--btn-text);
+  font-family: var(--font-family);
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  border: none;
+  border-radius: 0;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+  margin-top: 1rem;
+}
+
+.btn-submit:hover {
+  background: var(--accent);
+  color: var(--btn-text-hover);
+}
+
+.btn-submit:active {
+  opacity: 0.9;
+}
+
+.btn-submit:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Success view */
+.success-view {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  min-height: 400px;
+  animation: fadeInUp 0.4s ease-out forwards;
+}
+
+.success-view__tag {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 1.5rem;
+}
+
+.success-view__title {
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  margin-bottom: 0.5rem;
+}
+
+.success-view__subtitle {
+  font-size: 1.1rem;
+  font-weight: 300;
+  font-style: italic;
+  color: var(--text-muted);
+  margin-bottom: 2rem;
+}
+
+.success-view__details {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  letter-spacing: 0.05em;
+  margin-bottom: 3rem;
+  line-height: 1.6;
+}
+
+.success-view__back {
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  text-decoration: none;
+  cursor: pointer;
+  background: none;
+  border: none;
+  font-family: var(--font-family);
+  transition: color 0.2s;
+}
+
+.success-view__back:hover {
+  color: var(--accent);
+}
