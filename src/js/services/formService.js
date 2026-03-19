@@ -1,5 +1,5 @@
 import { db } from '../../config/firebase.js';
-import { doc, runTransaction, serverTimestamp } from 'firebase/firestore';
+import { doc, runTransaction } from 'firebase/firestore';
 
 function toTitleCase(str) {
   if (!str) return null;
@@ -44,6 +44,14 @@ export async function submitForm(data) {
     advancedPath: data.advancedPath ? toTitleCase(data.advancedPath.trim()) : null,
   };
 
+  // Heuristic for display name: if the user entered multiple tokens, pick the middle token when
+  // there are 3+ tokens (covers cases like "Anotot Emmanuel Arango" -> "Emmanuel").
+  const nameTokens = (data.name || '').trim().split(/\s+/).filter(Boolean);
+  let displayName = toTitleCase(nameTokens[0] || '');
+  if (nameTokens.length >= 3) {
+    displayName = toTitleCase(nameTokens[Math.floor(nameTokens.length / 2)]);
+  }
+
   // Guard: db must existir (por si la configuración de Firebase falló)
   if (!db) {
     console.error('Firebase DB no inicializado. Revisa src/config/firebase.js y tus VITE_FIREBASE_* env vars.');
@@ -57,13 +65,12 @@ export async function submitForm(data) {
       const snap = await tx.get(userRef);
       if (snap.exists()) {
         // throw something recognizable
-        const e = new Error('DUPLICATE_PHONE');
-        throw e;
+        throw new Error('DUPLICATE_PHONE');
       }
       tx.set(userRef, user);
     });
 
-    return { success: true, docId: phoneNormalized };
+    return { success: true, docId: phoneNormalized, displayName, role: user.role, clan: user.clan };
   } catch (err) {
     if (err && err.message === 'DUPLICATE_PHONE') {
       return { success: false, field: 'phone', error: 'Ya existe un registro con ese número de teléfono.' };

@@ -22,8 +22,8 @@ export function buildForm() {
   form.appendChild(
     createInput({
       id: 'name',
-      label: 'Nombre completo',
-      placeholder: 'Ingresa tu nombre completo',
+      label: 'Nombre',
+      placeholder: 'Ingresa tu nombre',
       required: true,
     })
   );

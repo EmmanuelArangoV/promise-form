@@ -61,8 +61,25 @@ function mountForm(container) {
     if (result.success) {
       // Remove form, show success view
       form.remove();
-      const successView = buildSuccessView(data, () => {
+      // Build a view payload that combines the original data and any computed fields
+      const successData = Object.assign({}, data, {
+        displayName: result.displayName || undefined,
+        role: result.role || data.role,
+        clan: result.clan || data.clan || undefined,
+        name: data.name,
+      });
+
+      // hide the static tag and heading while success view is visible
+      const tagEl = container.querySelector('.form-panel__tag');
+      const headingEl = container.querySelector('.form-panel__heading');
+      if (tagEl) tagEl.style.display = 'none';
+      if (headingEl) headingEl.style.display = 'none';
+
+      const successView = buildSuccessView(successData, () => {
+        // remove success view and restore header/tag before remounting form
         successView.remove();
+        if (tagEl) tagEl.style.display = '';
+        if (headingEl) headingEl.style.display = '';
         mountForm(container);
       });
       container.appendChild(successView);

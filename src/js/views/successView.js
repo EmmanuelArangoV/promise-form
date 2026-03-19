@@ -9,35 +9,26 @@
  */
 export function buildSuccessView(data, onBack) {
   const container = document.createElement('div');
-  container.classList.add('success-view');
+  container.classList.add('success-view', 'success-view--title-up', 'success-view--details-down');
 
-  const tag = document.createElement('p');
-  tag.classList.add('success-view__tag');
-  tag.textContent = 'SÉ PARTE DE NUESTRA DEMO';
-
+  // Only show title and subtitle (and back button) in the confirmation view per request
   const title = document.createElement('h2');
   title.classList.add('success-view__title');
-  title.textContent = `¡Listo, ${data.name.split(' ')[0]}!`;
+  // Prefer a precomputed displayName (from the service) but fall back to first token
+  const displayName = data.displayName || (data.name ? data.name.split(' ')[0] : '');
+  title.textContent = `¡Listo, ${displayName}!`;
 
   const subtitle = document.createElement('p');
   subtitle.classList.add('success-view__subtitle');
   subtitle.textContent = 'Te esperamos.';
-
-  const details = document.createElement('p');
-  details.classList.add('success-view__details');
-  const roleName = data.role === 'coder' ? 'Coder' : 'Staff';
-  const clanText = data.clan ? ` · ${data.clan.charAt(0).toUpperCase() + data.clan.slice(1)}` : '';
-  details.innerHTML = `${data.name}<br>${roleName}${clanText}`;
 
   const backBtn = document.createElement('button');
   backBtn.classList.add('success-view__back');
   backBtn.textContent = '←  Volver';
   backBtn.addEventListener('click', onBack);
 
-  container.appendChild(tag);
   container.appendChild(title);
   container.appendChild(subtitle);
-  container.appendChild(details);
   container.appendChild(backBtn);
 
   return container;

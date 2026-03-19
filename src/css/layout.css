@@ -66,6 +66,8 @@
   text-transform: uppercase;
   color: var(--accent);
   margin-bottom: 0.5rem;
+  /* center the tag relative to the form container */
+  text-align: center;
 }
 
 .form-panel__heading {
@@ -74,6 +76,8 @@
   font-weight: 800;
   color: var(--text-primary);
   margin-bottom: 2.5rem;
+  /* center the heading relative to the form container */
+  text-align: center;
   transition: color 0.3s;
 }
 
@@ -83,23 +87,52 @@
   top: 1.25rem;
   right: 1.25rem;
   z-index: 100;
-  width: 40px;
-  height: 40px;
+  width: 44px;
+  height: 44px;
   display: flex;
   justify-content: center;
   align-items: center;
-  background: transparent;
-  border: 1.5px solid var(--border);
+  background: transparent; /* no background */
+  border: none; /* remove border to keep it clean */
   border-radius: 0;
   cursor: pointer;
-  font-size: 1.1rem;
+  font-size: 1.25rem;
   color: var(--text-primary);
-  transition: border-color 0.2s, color 0.2s;
+  transition: border-color 0.2s, color 0.2s, background 0.2s;
 }
 
 .theme-toggle:hover {
   border-color: var(--accent);
   color: var(--accent);
+}
+
+/* Ensure clear contrast for the toggle icon in each theme */
+/* Keep the toggle icon white and without background in both themes */
+html[data-theme="light"] .theme-toggle,
+html[data-theme="dark"] .theme-toggle {
+  background: transparent;
+  color: white;
+}
+
+/* Ensure SVG icons inherit the color from the toggle; default to white so they
+   look good on vinotinto backgrounds (mobile). On desktop in light theme we want
+   the moon icon to be vinotinto so it's visible on a light background. */
+.theme-toggle svg {
+  display: block;
+  width: 20px;
+  height: 20px;
+  color: white; /* default */
+}
+
+@media (min-width: 769px) {
+  /* On desktop, when theme is light, set moon icon color to vinotinto */
+  html[data-theme="light"] .theme-toggle .icon-moon {
+    color: var(--primary);
+  }
+  /* Ensure sun remains white on desktop */
+  html[data-theme="light"] .theme-toggle .icon-sun {
+    color: white;
+  }
 }
 
 /* Mobile */
@@ -139,3 +172,15 @@
     margin-bottom: 2rem;
   }
 }
+
+/* Ensure theme icons are visible on small screens (avoid hover-only reveal)
+   Some browsers or gestures may hide icons unless they're large and accessible. */
+@media (max-width: 480px) {
+  .theme-toggle {
+    width: 48px;
+    height: 48px;
+    font-size: 1.4rem;
+    border-width: 1px;
+  }
+}
+

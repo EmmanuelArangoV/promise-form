@@ -5,14 +5,19 @@
   --text-primary: #1A0000;
   --text-muted: #7A4040;
   --border: #E8D5D5;
-  --accent: #FFBA08;
+  /* Accent for light theme changed from yellow to a deep wine/maroon ('binotinto')
+     because the cream background does not favor bright yellow. */
+  --accent: #6B1F2D;
+  /* Keep a yellow variant for buttons and selected role text in light mode */
+  --accent-yellow: #FFBA08;
   --primary: #3D0000;
   --input-bg: #FFFFFF;
   --color-error: #C0392B;
   --color-success: #1A5C2A;
   --brand-bg: #1A0000;
   --font-family: 'Raleway', sans-serif;
-  --btn-text: var(--accent);
+  /* In light theme we want button text to remain yellow */
+  --btn-text: var(--accent-yellow);
   --btn-text-hover: var(--primary);
 }
 

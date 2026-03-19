@@ -115,9 +115,16 @@
 }
 
 .role-selector__option input[type="radio"]:checked + .role-selector__box {
-  border-color: var(--accent);
-  background-color: var(--accent);
-  color: #1A0000;
+  /* Use the same darker vinotinto used by the submit button for the selected box */
+  border-color: var(--primary);
+  background-color: var(--primary);
+  color: #1A0000; /* default text on dark background */
+}
+
+/* In light theme we want the selected role label text to remain yellow (accent-yellow)
+   while keeping the box background as the darker vinotinto (var(--primary)). */
+html[data-theme="light"] .role-selector__option input[type="radio"]:checked + .role-selector__box {
+  color: var(--accent-yellow);
 }
 
 .role-selector__box:hover {
@@ -166,6 +173,17 @@
   text-align: center;
   min-height: 400px;
   animation: fadeInUp 0.4s ease-out forwards;
+}
+
+/* Small offsets to tweak vertical positioning on success screen */
+.success-view--title-up .success-view__tag,
+.success-view--title-up .success-view__title {
+  transform: translateY(-6px);
+}
+
+.success-view--details-down .success-view__details,
+.success-view--details-down .success-view__back {
+  transform: translateY(6px);
 }
 
 .success-view__tag {
