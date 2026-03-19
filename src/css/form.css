@@ -128,8 +128,17 @@ html[data-theme="light"] .role-selector__option input[type="radio"]:checked + .r
 }
 
 .role-selector__box:hover {
+  /* Make the box transparent on hover, highlight the border and change text color depending on theme */
+  background-color: transparent;
   border-color: var(--accent);
-  color: var(--text-primary);
+}
+
+/* Hover text color: yellow in dark theme, vinotinto (primary) in light theme */
+html[data-theme="dark"] .role-selector__box:hover {
+  color: var(--accent-yellow);
+}
+html[data-theme="light"] .role-selector__box:hover {
+  color: var(--primary);
 }
 
 /* Submit button */
@@ -143,16 +152,26 @@ html[data-theme="light"] .role-selector__option input[type="radio"]:checked + .r
   font-size: 13px;
   letter-spacing: 0.15em;
   text-transform: uppercase;
-  border: none;
+  border: 1.5px solid var(--primary);
   border-radius: 0;
   cursor: pointer;
-  transition: background 0.2s, color 0.2s;
+  transition: border-color 0.18s ease, color 0.18s ease, background 0.18s ease;
   margin-top: 1rem;
 }
 
 .btn-submit:hover {
-  background: var(--accent);
-  color: var(--btn-text-hover);
+  /* Make submit behave like role boxes on hover: transparent background, highlighted border,
+     and theme-specific text color (yellow in dark, vinotinto in light). */
+  background-color: transparent;
+  border-color: var(--accent);
+}
+
+html[data-theme="dark"] .btn-submit:hover {
+  color: var(--accent-yellow);
+}
+
+html[data-theme="light"] .btn-submit:hover {
+  color: var(--primary);
 }
 
 .btn-submit:active {
