@@ -37,20 +37,16 @@ export async function submitForm(data) {
 
   // Normalize other fields
   const user = {
-    name: toTitleCase(data.name.trim()),
+    // Store only the first word of the provided name (e.g. "Emmanuel Arango Velasquez" -> "Emmanuel")
+    name: toTitleCase((data.name || '').trim().split(/\s+/).filter(Boolean)[0] || ''),
     phone: phoneNormalized,
     role: normalizeRole(data.role),
     clan: data.clan ? toTitleCase(data.clan.trim()) : null,
     advancedPath: data.advancedPath ? toTitleCase(data.advancedPath.trim()) : null,
   };
-
-  // Heuristic for display name: if the user entered multiple tokens, pick the middle token when
-  // there are 3+ tokens (covers cases like "Anotot Emmanuel Arango" -> "Emmanuel").
+  // Display name: always use the first token in Title Case
   const nameTokens = (data.name || '').trim().split(/\s+/).filter(Boolean);
-  let displayName = toTitleCase(nameTokens[0] || '');
-  if (nameTokens.length >= 3) {
-    displayName = toTitleCase(nameTokens[Math.floor(nameTokens.length / 2)]);
-  }
+  const displayName = toTitleCase(nameTokens[0] || '');
 
   // Guard: db must existir (por si la configuración de Firebase falló)
   if (!db) {
