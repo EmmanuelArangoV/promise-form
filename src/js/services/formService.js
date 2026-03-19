@@ -42,7 +42,7 @@ export async function submitForm(data) {
     phone: phoneNormalized,
     role: normalizeRole(data.role),
     clan: data.clan ? toTitleCase(data.clan.trim()) : null,
-    advancedPath: data.advancedPath ? toTitleCase(data.advancedPath.trim()) : null,
+    advancedPath: data.advancedPath ? data.advancedPath.trim() : null,
   };
   // Display name: always use the first token in Title Case
   const nameTokens = (data.name || '').trim().split(/\s+/).filter(Boolean);
